@@ -128,6 +128,35 @@ exclude_lines =
 fail_under = 80
 ```
 
+## Ejecución de las Pruebas
+
+Con el entorno virtual activado (`source venv/bin/activate` en Mac/Linux/WSL, `venv\Scripts\activate` en Windows):
+
+- Ejecutar todas las pruebas con cobertura (configurada en `pytest.ini`; el reporte HTML queda en `htmlcov/index.html`):
+
+    ```bash
+    pytest
+    ```
+
+- Ejecutar solo las pruebas unitarias o solo las de integración:
+
+    ```bash
+    pytest tests/unit
+    pytest -m integration
+    ```
+
+- Ejecutar un archivo o una prueba específica:
+
+    ```bash
+    pytest tests/unit/models/concretos/test_silla.py
+    pytest tests/unit/models/concretos/test_silla.py::TestSillaPrecio::test_precio_silla_basica
+    ```
+
+**Notas:**
+
+- La interfaz interactiva de consola (`src/ui/`) está excluida de la medición de cobertura en `.coveragerc`.
+- Las 3 pruebas marcadas como `xfail` corresponden a métodos de `src/services/tienda.py` que siguen pendientes (`TODO`) en el código fuente.
+
 ## Diseño de Pruebas Unitarias
 
 ### Filosofía de las Pruebas
